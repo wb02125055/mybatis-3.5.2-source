@@ -31,24 +31,33 @@ import java.io.InputStream;
  */
 public class TestDemo1 {
   @Test
-  public void test() throws Exception {
+  public void testSelect() throws Exception {
     String resource = "mybatis-config.xml";
     InputStream inputStream = Resources.getResourceAsStream(resource);
-    SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+    SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+    SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(inputStream);
     SqlSession session = sqlSessionFactory.openSession();
-    try {
-      UserMapper mapper = session.getMapper(UserMapper.class);
-      System.out.println(mapper.selectById(1));
-//      UserMapper mapper = session.getMapper(UserMapper.class);
-      User user = new User();
-      user.setId(12);
-      user.setName("wb");
-      user.setAge(23);
-      int res = mapper.insertUser(user);
-      session.commit();
-      System.out.println(res);
-    } finally {
-      session.close();
-    }
+    UserMapper mapper = session.getMapper(UserMapper.class);
+    User user = mapper.selectById(1);
+    session.commit();
+    System.out.println(user);
+    session.close();
+  }
+  @Test
+  public void testInsert() throws Exception {
+    String resource = "mybatis-config.xml";
+    InputStream inputStream = Resources.getResourceAsStream(resource);
+    SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+    SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(inputStream);
+    SqlSession session = sqlSessionFactory.openSession();
+    UserMapper mapper = session.getMapper(UserMapper.class);
+    User user = new User();
+    user.setId(5);
+    user.setName("PeiPei");
+    user.setAge(18);
+    int res = mapper.insertUser(user);
+    session.commit();
+    System.out.println(res);
+    session.close();
   }
 }

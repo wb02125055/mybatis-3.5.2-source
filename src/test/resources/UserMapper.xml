@@ -8,11 +8,9 @@
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="age" jdbcType="INTEGER" property="age" />
     </resultMap>
-  <!--
-  <select id="selectById" resultType="com.wb.ibatis.domain.User">
+    <select id="selectById" resultType="com.wb.ibatis.domain.User">
         select * from user where id = #{id}
     </select>
-  -->
     <insert id="insertUser" parameterType="com.wb.ibatis.domain.User">
         insert into user(id,name,age) values(#{id},#{name},#{age})
     </insert>

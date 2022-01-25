@@ -23,7 +23,6 @@ public class User {
   private Integer id;
   private String name;
   private Integer age;
-  private Integer sex;
 
   public Integer getId() {
     return id;
@@ -49,21 +48,12 @@ public class User {
     this.age = age;
   }
 
-  public Integer getSex() {
-    return sex;
-  }
-
-  public void setSex(Integer sex) {
-    this.sex = sex;
-  }
-
   @Override
   public String toString() {
     return "User{" +
       "id=" + id +
       ", name='" + name + '\'' +
       ", age=" + age +
-      ", sex=" + sex +
       '}';
   }
 }
